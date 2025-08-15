@@ -1,1 +1,118 @@
-<p>home works!</p>
+<header>
+  <button class="btn-criar" (click)="abrirFormulario()">Criar Livro</button>
+  <button class="btn-pesquisar" (click)="abrirPesquisa()">Pesquisar Livro</button>
+  <button class="btn-deletar" (click)="abrirExclusao()">Excluir Livro</button>
+  <button class="btn-atualizar" (click)="abrirPesquisaAtualizacao()">Atualizar Livro</button>
+</header>
+
+
+@if (mostrarFormulario) {
+  <form class="form-livro" (ngSubmit)="criarLivro()" #livroForm="ngForm">
+    <h2 class="form-title">📚 Cadastrar Livro</h2>
+
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input id="titulo" type="text" [(ngModel)]="novoLivro.titulo" name="titulo" required />
+    </div>
+
+    <div class="form-group">
+      <label for="autor">Autor</label>
+      <input id="autor" type="text" [(ngModel)]="novoLivro.autor" name="autor" required />
+    </div>
+
+    <div class="form-group">
+      <label for="isbn">ISBN</label>
+      <input id="isbn" type="text" [(ngModel)]="novoLivro.isbn" name="isbn" required />
+    </div>
+
+    <div class="form-group">
+      <label for="categoria">Categoria</label>
+      <input id="categoria" type="text" [(ngModel)]="novoLivro.categoria" name="categoria" required />
+    </div>
+
+    <div class="form-group">
+      <label for="dataPublicacao">Data de Publicação</label>
+      <input id="dataPublicacao" type="date" [(ngModel)]="novoLivro.dataPublicacao" name="dataPublicacao" required />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">Criar Livro</button>
+      <button type="button" class="btn-danger" (click)="fecharFormulario()">Cancelar</button>
+    </div>
+  </form>
+}
+
+@if (mensagem) {
+  <div class="mensagem-sucesso">{{ mensagem }}</div>
+}
+
+@if(mostrarPesquisa) {
+    <div class="pesquisa">
+    <input type="text" placeholder="Procurar Livros" [(ngModel)]="isbn">
+    <button (click)="pesquisar()">Pesquisar</button>
+    </div>
+}
+
+@if (livro) {
+    <div class="resultado-livro">
+        <p><strong>Título:</strong> {{ livro.titulo }}</p>
+        <p><strong>Autor:</strong> {{ livro.autor }}</p>
+        <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
+        <p><strong>Data Publicação:</strong> {{ livro.dataPublicacao }}</p>
+        <p><strong>Categoria:</strong> {{ livro.categoria }}</p>
+
+    </div>
+}
+
+@if(mostrarExclusao) {
+    <div class="excluir">
+    <input type="text" placeholder="Informe o isbn do livro." [(ngModel)]="isbn">
+    <button (click)="deletarLivro()">Excluir</button>
+    </div>
+}
+
+
+@if(mostrarPesquisaAtualizacao) {
+    <div class="pesquisa-atualizacao">
+    <input type="text" placeholder="Informe o isbn do livro para a edição" [(ngModel)]="isbn">
+    <button (click)="pesquisarAtualizador()">Editar</button>
+    </div>
+}
+
+
+@if (mostrarAtualizador) {
+  <form class="form-livro" (ngSubmit)="atualizaLivro()" #livroForm="ngForm">
+    <h2 class="form-title">🔧 Atualizar livro</h2>
+
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input id="titulo" type="text" [(ngModel)]="livroAtualizado.titulo" name="titulo" required />
+    </div>
+
+    <div class="form-group">
+      <label for="autor">Autor</label>
+      <input id="autor" type="text" [(ngModel)]="livroAtualizado.autor" name="autor" required />
+    </div>
+
+    <div class="form-group">
+      <label for="isbn">ISBN</label>
+      <input id="isbn" type="text" [(ngModel)]="livroAtualizado.isbn" name="isbn" required readonly/>
+    </div>
+
+    <div class="form-group">
+      <label for="categoria">Categoria</label>
+      <input id="categoria" type="text" [(ngModel)]="livroAtualizado.categoria" name="categoria" required />
+    </div>
+
+    <div class="form-group">
+      <label for="dataPublicacao">Data de Publicação</label>
+      <input id="dataPublicacao" type="date" [(ngModel)]="livroAtualizado.dataPublicacao" name="dataPublicacao" required />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">Atualizar Livro</button>
+      <button type="button" class="btn-danger" (click)="fecharAtualizador()">Cancelar</button>
+    </div>
+  </form>
+}
+
