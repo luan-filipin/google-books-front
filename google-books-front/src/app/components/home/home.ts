@@ -63,7 +63,7 @@ export class Home {
   abrirExclusao() {
     this.mostrarExclusao = true;
     this.mostrarFormulario = false;
-    this.mostrarAtualizador = false;
+  this.mostrarAtualizador = false;
     this.mostrarPesquisa = false;
     this.mostrarPesquisaAtualizacao = false;
     this.mensagem = '';
